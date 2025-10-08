@@ -7,18 +7,22 @@ use App\Http\Controllers\PregledKontroler;
 use App\Http\Controllers\DokumentKontroler;
 
 
+
 Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware(['auth'])->group(function () {
 
-Route::middleware('auth')->group(function () {
 
-    Route::resource('profili', ProfilKontroler::class);
+    Route::resource('profili', ProfilKontroler::class)
+        ->parameters(['profili' => 'profil']);
+
+
     Route::resource('cijepljenja', CijepljenjeKontroler::class);
     Route::resource('pregledi', PregledKontroler::class);
     Route::resource('dokumenti', DokumentKontroler::class);
-
 });
 
-require __DIR__.'/auth.php';
+
+require base_path('routes/auth.php');

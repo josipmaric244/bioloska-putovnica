@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Feature\Auth;
+namespace _Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use _Tests\TestCase;
 
 class RegistrationTest extends TestCase
 {

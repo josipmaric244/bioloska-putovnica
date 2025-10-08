@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Feature;
+namespace _Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use _Tests\TestCase;
 
 class ProfileTest extends TestCase
 {

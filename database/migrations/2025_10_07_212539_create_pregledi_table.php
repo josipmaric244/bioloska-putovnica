@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pregledi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->date('datum_pregleda');
-            $table->string('vrsta_pregleda');
+            $table->date('datum');
+            $table->string('vrsta');
             $table->string('lijecnik')->nullable();
             $table->text('nalaz')->nullable();
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pregleds');
+        Schema::dropIfExists('pregledi');
     }
 };

@@ -10,7 +10,7 @@
 <nav class="bg-blue-600 p-4 text-white flex justify-between">
     <h1 class="text-lg font-bold">Biološka putovnica</h1>
     <div>
-        <a href="{{ route('dashboard') }}" class="px-3 hover:underline">Dashboard</a>
+        <a href="{{ route('dashboard') }}" class="px-3 hover:underline">Naslovna</a>
         <a href="{{ route('dokumenti.index') }}" class="px-3 hover:underline">Dokumenti</a>
         <a href="{{ route('cijepljenja.index') }}" class="px-3 hover:underline">Cijepljenja</a>
         <a href="{{ route('pregledi.index') }}" class="px-3 hover:underline">Pregledi</a>

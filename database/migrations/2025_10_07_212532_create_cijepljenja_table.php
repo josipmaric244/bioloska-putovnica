@@ -6,27 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('cijepljenja', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('naziv_cjepiva');
-            $table->date('datum_primanja')->nullable();
-            $table->unsignedTinyInteger('broj_dozе')->nullable();
-            $table->string('status')->default('primljeno');
+            $table->date('datum_primanja');
+            $table->integer('broj_doze')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('cijepljenjes');
+        Schema::dropIfExists('cijepljenja');
     }
 };

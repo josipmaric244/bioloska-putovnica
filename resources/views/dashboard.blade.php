@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-2">Biološka putovnica – Naslovna</h1>
+    <h1 class="text-3xl font-bold mb-2">Biološka putovnica</h1>
     <p class="text-lg mb-6">Dobrodošao, {{ auth()->user()->name }}!</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
