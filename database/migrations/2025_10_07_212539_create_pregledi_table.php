@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pregledi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('korisnik_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->date('datum_pregleda');
             $table->string('vrsta_pregleda');
             $table->string('lijecnik')->nullable();

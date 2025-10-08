@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cijepljenja', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('korisnik_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('naziv_cjepiva');
             $table->date('datum_primanja')->nullable();
             $table->unsignedTinyInteger('broj_dozе')->nullable();

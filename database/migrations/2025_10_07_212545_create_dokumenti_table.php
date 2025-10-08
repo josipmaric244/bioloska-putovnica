@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dokumenti', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('korisnik_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->enum('vrsta_dokumenta', ['nalaz','uputnica','ostalo'])->default('nalaz');
             $table->string('naziv');
             $table->string('putanja');
