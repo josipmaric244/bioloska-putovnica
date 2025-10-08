@@ -1,27 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Uredi pregled</h2>
+    <h2 class="text-2xl font-bold mb-4">Uredi pregled</h2>
 
-    <form action="{{ route('pregledi.update',$pregled->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="mb-3">
+    <form action="{{ route('pregledi.update',$pregled->id) }}" method="POST" class="space-y-4">
+        @csrf @method('PUT')
+        <div>
             <label>Datum</label>
-            <input type="date" name="datum" class="form-control" value="{{ $pregled->datum }}" required>
+            <input type="date" name="datum" class="w-full border px-3 py-2 rounded" value="{{ $pregled->datum }}" required>
         </div>
-        <div class="mb-3">
+        <div>
             <label>Vrsta pregleda</label>
-            <input type="text" name="vrsta" class="form-control" value="{{ $pregled->vrsta }}" required>
+            <input type="text" name="vrsta" class="w-full border px-3 py-2 rounded" value="{{ $pregled->vrsta }}" required>
         </div>
-        <div class="mb-3">
+        <div>
             <label>Liječnik</label>
-            <input type="text" name="lijecnik" class="form-control" value="{{ $pregled->lijecnik }}">
+            <input type="text" name="lijecnik" class="w-full border px-3 py-2 rounded" value="{{ $pregled->lijecnik }}">
         </div>
-        <div class="mb-3">
+        <div>
             <label>Nalaz</label>
-            <textarea name="nalaz" class="form-control">{{ $pregled->nalaz }}</textarea>
+            <textarea name="nalaz" class="w-full border px-3 py-2 rounded">{{ $pregled->nalaz }}</textarea>
         </div>
-        <button type="submit" class="btn btn-success">Spremi promjene</button>
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Spremi promjene</button>
     </form>
 @endsection

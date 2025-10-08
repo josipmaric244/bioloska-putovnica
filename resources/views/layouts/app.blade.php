@@ -2,36 +2,24 @@
 <html lang="hr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biološka putovnica</title>
     @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Biološka putovnica</a>
-        <ul class="navbar-nav ms-auto">
-            @auth
-                <li class="nav-item"><a class="nav-link" href="{{ route('profili.index') }}">Profili</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('cijepljenja.index') }}">Cijepljenja</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('pregledi.index') }}">Pregledi</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('dokumenti.index') }}">Dokumenti</a></li>
-                <li class="nav-item">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link nav-link">Odjava</button>
-                    </form>
-                </li>
-            @else
-                <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Prijava</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Registracija</a></li>
-            @endauth
-        </ul>
+<body class="bg-gray-100 text-gray-800">
+<nav class="bg-blue-600 p-4 text-white flex justify-between">
+    <h1 class="text-lg font-bold">Biološka putovnica</h1>
+    <div>
+        <a href="{{ route('dashboard') }}" class="px-3 hover:underline">Dashboard</a>
+        <a href="{{ route('dokumenti.index') }}" class="px-3 hover:underline">Dokumenti</a>
+        <a href="{{ route('cijepljenja.index') }}" class="px-3 hover:underline">Cijepljenja</a>
+        <a href="{{ route('pregledi.index') }}" class="px-3 hover:underline">Pregledi</a>
+        <a href="{{ route('profili.index') }}" class="px-3 hover:underline">Profil</a>
     </div>
 </nav>
 
-<main class="container">
+<div class="container mx-auto p-6">
     @yield('content')
-</main>
+</div>
 </body>
 </html>

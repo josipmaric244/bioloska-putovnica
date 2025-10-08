@@ -1,29 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Uredi profil</h2>
+    <h2 class="text-2xl font-bold mb-4">Uredi profil</h2>
 
-    <form action="{{ route('profili.update',$profil->id) }}" method="POST">
+    <form action="{{ route('profili.update',$profil->id) }}" method="POST" class="space-y-4">
         @csrf
         @method('PUT')
 
-        <div class="mb-3">
+        <div>
             <label>Krvna grupa</label>
-            <input type="text" name="krvna_grupa" class="form-control" value="{{ $profil->krvna_grupa }}">
-        </div>
-        <div class="mb-3">
-            <label>Alergije</label>
-            <input type="text" name="alergije" class="form-control" value="{{ $profil->alergije }}">
-        </div>
-        <div class="mb-3">
-            <label>Visina (cm)</label>
-            <input type="number" name="visina_cm" class="form-control" value="{{ $profil->visina_cm }}">
-        </div>
-        <div class="mb-3">
-            <label>Težina (kg)</label>
-            <input type="number" name="tezina_kg" class="form-control" value="{{ $profil->tezina_kg }}">
+            <select name="krvna_grupa" class="w-full border px-3 py-2 rounded">
+                <option value="">-- Odaberi --</option>
+                <option value="0-" {{ $profil->krvna_grupa == '0-' ? 'selected' : '' }}>0-</option>
+                <option value="0+" {{ $profil->krvna_grupa == '0+' ? 'selected' : '' }}>0+</option>
+                <option value="A-" {{ $profil->krvna_grupa == 'A-' ? 'selected' : '' }}>A-</option>
+                <option value="A+" {{ $profil->krvna_grupa == 'A+' ? 'selected' : '' }}>A+</option>
+                <option value="B-" {{ $profil->krvna_grupa == 'B-' ? 'selected' : '' }}>B-</option>
+                <option value="B+" {{ $profil->krvna_grupa == 'B+' ? 'selected' : '' }}>B+</option>
+                <option value="AB-" {{ $profil->krvna_grupa == 'AB-' ? 'selected' : '' }}>AB-</option>
+                <option value="AB+" {{ $profil->krvna_grupa == 'AB+' ? 'selected' : '' }}>AB+</option>
+            </select>
         </div>
 
-        <button type="submit" class="btn btn-success">Spremi promjene</button>
+        <div>
+            <label>Alergije</label>
+            <input type="text" name="alergije" class="w-full border px-3 py-2 rounded" value="{{ $profil->alergije }}">
+        </div>
+
+        <div>
+            <label>Visina (cm)</label>
+            <input type="number" name="visina_cm" class="w-full border px-3 py-2 rounded" value="{{ $profil->visina_cm }}">
+        </div>
+
+        <div>
+            <label>Težina (kg)</label>
+            <input type="number" step="0.01" name="tezina_kg" class="w-full border px-3 py-2 rounded" value="{{ $profil->tezina_kg }}">
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Spremi promjene</button>
     </form>
 @endsection

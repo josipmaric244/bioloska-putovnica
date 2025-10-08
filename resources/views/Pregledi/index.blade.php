@@ -1,35 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Moji pregledi</h2>
-    <a href="{{ route('pregledi.create') }}" class="btn btn-primary mb-3">Dodaj pregled</a>
+    <h2 class="text-2xl font-bold mb-4">Moji pregledi</h2>
+    <a href="{{ route('pregledi.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">+ Dodaj pregled</a>
 
     @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="mt-3 p-3 bg-green-100 text-green-700 rounded">{{ session('success') }}</div>
     @endif
 
-    <table class="table table-bordered">
-        <tr>
-            <th>Datum</th>
-            <th>Vrsta pregleda</th>
-            <th>Liječnik</th>
-            <th>Nalaz</th>
-            <th>Akcije</th>
+    <table class="min-w-full bg-white shadow rounded mt-4">
+        <thead>
+        <tr class="bg-blue-600 text-white">
+            <th class="px-4 py-2 text-left">Datum</th>
+            <th class="px-4 py-2 text-left">Vrsta</th>
+            <th class="px-4 py-2 text-left">Liječnik</th>
+            <th class="px-4 py-2 text-left">Nalaz</th>
+            <th class="px-4 py-2 text-left">Akcije</th>
         </tr>
-        @foreach($pregledi as $p)
-            <tr>
-                <td>{{ $p->datum }}</td>
-                <td>{{ $p->vrsta }}</td>
-                <td>{{ $p->lijecnik }}</td>
-                <td>{{ $p->nalaz }}</td>
-                <td>
-                    <a href="{{ route('pregledi.edit',$p->id) }}" class="btn btn-sm btn-warning">Uredi</a>
-                    <form action="{{ route('pregledi.destroy',$p->id) }}" method="POST" style="display:inline;">
+        </thead>
+        <tbody>
+        @forelse($pregledi as $p)
+            <tr class="border-b hover:bg-gray-100">
+                <td class="px-4 py-2">{{ $p->datum }}</td>
+                <td class="px-4 py-2">{{ $p->vrsta }}</td>
+                <td class="px-4 py-2">{{ $p->lijecnik }}</td>
+                <td class="px-4 py-2">{{ $p->nalaz }}</td>
+                <td class="px-4 py-2 flex space-x-2">
+                    <a href="{{ route('pregledi.edit',$p->id) }}" class="bg-yellow-400 px-2 py-1 rounded text-black">Uredi</a>
+                    <form action="{{ route('pregledi.destroy',$p->id) }}" method="POST" onsubmit="return confirm('Sigurno obrisati?')">
                         @csrf @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">Obriši</button>
+                        <button class="bg-red-500 px-2 py-1 rounded text-white">Obriši</button>
                     </form>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr><td colspan="5" class="px-4 py-2 text-center text-gray-500">Nema pregleda.</td></tr>
+        @endforelse
+        </tbody>
     </table>
 @endsection

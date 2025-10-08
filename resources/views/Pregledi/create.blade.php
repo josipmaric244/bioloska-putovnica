@@ -1,26 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Dodaj pregled</h2>
+    <h2 class="text-2xl font-bold mb-4">Dodaj pregled</h2>
 
-    <form action="{{ route('pregledi.store') }}" method="POST">
+    <form action="{{ route('pregledi.store') }}" method="POST" class="space-y-4">
         @csrf
-        <div class="mb-3">
+        <div>
             <label>Datum</label>
-            <input type="date" name="datum" class="form-control" required>
+            <input type="date" name="datum" class="w-full border px-3 py-2 rounded" required>
         </div>
-        <div class="mb-3">
+        <div>
             <label>Vrsta pregleda</label>
-            <input type="text" name="vrsta" class="form-control" required>
+            <input type="text" name="vrsta" class="w-full border px-3 py-2 rounded" required>
         </div>
-        <div class="mb-3">
+        <div>
             <label>Liječnik</label>
-            <input type="text" name="lijecnik" class="form-control">
+            <input type="text" name="lijecnik" class="w-full border px-3 py-2 rounded">
         </div>
-        <div class="mb-3">
+        <div>
             <label>Nalaz</label>
-            <textarea name="nalaz" class="form-control"></textarea>
+            <textarea name="nalaz" class="w-full border px-3 py-2 rounded"></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Spremi</button>
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Spremi</button>
     </form>
 @endsection

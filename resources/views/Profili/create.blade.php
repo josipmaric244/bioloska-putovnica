@@ -1,26 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Kreiraj profil</h2>
+    <h2 class="text-2xl font-bold mb-4">Kreiraj profil</h2>
 
-    <form action="{{ route('profili.store') }}" method="POST">
+    <form action="{{ route('profili.store') }}" method="POST" class="space-y-4">
         @csrf
-        <div class="mb-3">
+
+        <div>
             <label>Krvna grupa</label>
-            <input type="text" name="krvna_grupa" class="form-control">
+            <select name="krvna_grupa" class="w-full border px-3 py-2 rounded">
+                <option value="">-- Odaberi --</option>
+                <option value="0-">0-</option>
+                <option value="0+">0+</option>
+                <option value="A-">A-</option>
+                <option value="A+">A+</option>
+                <option value="B-">B-</option>
+                <option value="B+">B+</option>
+                <option value="AB-">AB-</option>
+                <option value="AB+">AB+</option>
+            </select>
         </div>
-        <div class="mb-3">
+
+        <div>
             <label>Alergije</label>
-            <input type="text" name="alergije" class="form-control">
+            <input type="text" name="alergije" class="w-full border px-3 py-2 rounded">
         </div>
-        <div class="mb-3">
+
+        <div>
             <label>Visina (cm)</label>
-            <input type="number" name="visina_cm" class="form-control">
+            <input type="number" name="visina_cm" class="w-full border px-3 py-2 rounded">
         </div>
-        <div class="mb-3">
+
+        <div>
             <label>Težina (kg)</label>
-            <input type="number" name="tezina_kg" class="form-control">
+            <input type="number" step="0.01" name="tezina_kg" class="w-full border px-3 py-2 rounded">
         </div>
-        <button type="submit" class="btn btn-success">Spremi</button>
+
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Spremi</button>
     </form>
 @endsection
