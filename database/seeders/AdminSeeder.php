@@ -11,6 +11,19 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
+        // Super admin fixture
+        $superAdminUser = User::firstOrCreate(
+            ['email' => 'superadmin@mail.test'],
+            [
+                'name'     => 'Super Admin',
+                'password' => Hash::make('superadmin123'),
+            ]
+        );
+
+        $superAdminRole = Uloga::where('naziv', 'super_admin')->firstOrFail();
+        $superAdminUser->uloge()->syncWithoutDetaching([$superAdminRole->id]);
+
+        // Optionally, keep the old admin fixture for backward compatibility
         $korisnik = User::firstOrCreate(
             ['email' => 'admin@mail.test'],
             [
@@ -18,8 +31,6 @@ class AdminSeeder extends Seeder
                 'password' => Hash::make('lozinka123'),
             ]
         );
-
-        $superAdmin = Uloga::where('naziv', 'super_admin')->firstOrFail();
-        $korisnik->uloge()->syncWithoutDetaching([$superAdmin->id]);
+        $korisnik->uloge()->syncWithoutDetaching([$superAdminRole->id]);
     }
 }

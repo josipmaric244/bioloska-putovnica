@@ -9,12 +9,17 @@ class ProfilKontroler extends Controller
 {
     public function index()
     {
-        $profil = Profil::where('user_id', auth()->id())->first();
-
+        $user = auth()->user();
+        if ($user && $user->imaUlogu(['admin', 'super_admin'])) {
+            // Admins and super admins see all profiles
+            $profili = \App\Models\Profil::with('user')->get();
+            return view('profili.all', compact('profili'));
+        }
+        // Regular users see their own profile or are redirected to create
+        $profil = \App\Models\Profil::where('user_id', auth()->id())->first();
         if ($profil) {
             return redirect()->route('profili.show', ['profil' => $profil->id]);
         }
-
         return redirect()->route('profili.create');
     }
 

@@ -15,8 +15,8 @@
 
     @if($profil)
         <div class="bg-white shadow rounded p-4 space-y-2">
-            <p><strong>Korisnik:</strong> {{ $profil->user->name ?? '-' }}</p>
-            <p><strong>Email:</strong> {{ $profil->user->email ?? '-' }}</p>
+            <p><strong>Korisnik:</strong> {{ $profil->korisnik->name ?? auth()->user()->name }}</p>
+            <p><strong>Email:</strong> {{ $profil->korisnik->email ?? auth()->user()->email }}</p>
             <p><strong>Krvna grupa:</strong> {{ $profil->krvna_grupa ?? '-' }}</p>
             <p><strong>Alergije:</strong> {{ $profil->alergije ?? '-' }}</p>
             <p><strong>Visina:</strong> {{ $profil->visina_cm ?? '-' }} cm</p>

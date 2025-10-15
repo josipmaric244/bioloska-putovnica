@@ -16,8 +16,9 @@ class KorisnikKontroler extends Controller
 
     public function create()
     {
-        $uloge = Uloga::all();
-        return view('korisnici.create', compact('uloge'));
+        $adminRole = Uloga::where('naziv', 'admin')->first();
+        $adminRoleId = $adminRole ? $adminRole->id : null;
+        return view('korisnici.create', compact('adminRoleId'));
     }
 
     public function store(Request $request)
@@ -37,7 +38,7 @@ class KorisnikKontroler extends Controller
 
         $korisnik->uloge()->sync($request->uloge);
 
-        return redirect()->route('korisnici.index')->with('success', 'Korisnik dodan.');
+        return redirect()->route('korisnici.index')->with('success', 'Administrator dodan.');
     }
 
     public function edit(User $korisnik)

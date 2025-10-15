@@ -14,17 +14,7 @@
         <a href="{{ route('dokumenti.index') }}" class="px-3 hover:underline">Dokumenti</a>
         <a href="{{ route('cijepljenja.index') }}" class="px-3 hover:underline">Cijepljenja</a>
         <a href="{{ route('pregledi.index') }}" class="px-3 hover:underline">Pregledi</a>
-        <a href="{{ route('profili.index') }}" class="px-3 hover:underline">
-            @php $user = auth()->user(); @endphp
-            @if($user && $user->imaUlogu(['admin', 'super_admin']))
-                Svi profili
-            @else
-                Profil
-            @endif
-        </a>
-        @if($user && $user->imaUlogu(['super_admin']) && !$user->imaUlogu(['admin']))
-            <a href="{{ route('korisnici.create') }}" class="px-3 hover:underline">Dodaj administratora</a>
-        @endif
+        <a href="{{ route('profili.index') }}" class="px-3 hover:underline">Profil</a>
     </div>
 </nav>
 
